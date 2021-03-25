@@ -1,19 +1,40 @@
 import React, { Component } from 'react';
-import CatList from './CatList';
  
-class CatIndex {
- constructor(){
-   super(props)
-   state : {
+export default class CatIndex extends Component{
+ constructor(props){
+   super(props);
+   this.state = {
      breeds: ['persian', 'siamese', 'maine coon', 'ragdoll', 'scottish fold', 'sphynx', 'british shorthair', 'bengal', 'american shorthair']
    }
+   
  }
-
-   return (
-     <div>
-      <CatList cats={breeds} />
-     </div>
-   );
+ render() {
+  return(
+      <div>
+        <Cats breeds={this.state.breeds}/>
+      </div>
+  );
+}
 
 }
+
+class Cats extends Component {
+  render() {
+    return(
+      <div>
+        {this.props.breeds.map((breeds) => {
+          return <CatList cats={breeds} />;
+        })}
+      </div>
+    );
+  }
+}
+
+const CatList = (props) => {
+  return(
+    <>
+        <p>{props.cats}</p>
+    </>
+  );
+};
 
